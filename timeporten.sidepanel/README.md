@@ -4,6 +4,8 @@
 ## Extention 1
 Allow for drag select timecells in "released times" to avoid clicking each individual cell. This is build by re-using the existing jquery-ui library used in NemoQ ventus.
 
+https://api.jqueryui.com/1.10/selectable
+
 # This repository is buildt on the site-specific side panel example described below
 
 ## Site-specific side panel example
