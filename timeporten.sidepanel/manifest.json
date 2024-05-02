@@ -1,13 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Site-specific side panel",
+  "name": "Timeporten sidepanel",
   "version": "1.0",
-  "description": "Shows how to display the side panel only on google.com using the Side Panel API.",
+  "description": "Bruker Side Panel API for å vise kodeutvidelser kun for timeporten.",
   "background": {
     "service_worker": "service-worker.js"
   },
   "action": {
-    "default_title": "Click to open panel"
+    "default_title": "Klikk for å åpne panel"
   },
   "permissions": ["tabs", "sidePanel"],
   "commands": {
