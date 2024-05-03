@@ -26,6 +26,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, info, tab) => {
   // Enables the side panel on google.com
   console.log(url.origin);
   if (url.origin === ALLOWED_DNS) {
+    console.log('enable sidepanel on ' + url.origin);
     await chrome.sidePanel.setOptions({
       tabId,
       path: 'tp.html',
