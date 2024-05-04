@@ -25,11 +25,11 @@ chrome.tabs.onUpdated.addListener(async (tabId, info, tab) => {
   const url = new URL(tab.url);
   // Enables the side panel on google.com
   console.log(url.origin);
-  if (url.origin === ALLOWED_DNS) {
+  if (url.origin === ALLOWED_DNS){
     console.log('enable sidepanel on ' + url.origin);
     await chrome.sidePanel.setOptions({
       tabId,
-      path: 'tp.html',
+      path: 'ventus.html',
       enabled: true
     });
   } else {

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Timeporten sidepanel",
+  "name": "Ventus sidepanel",
   "version": "1.0",
-  "description": "Bruker Side Panel API for å vise kodeutvidelser kun for timeporten.",
+  "description": "Bruker Side Panel API for å vise kodeutvidelser kun for Nemo-q Ventus admin.",
   "background": {
     "service_worker": "service-worker.js"
   },
@@ -19,15 +19,15 @@
     }
   },
   "icons": {
-    "16": "images/T16.png",
-    "48": "images/T48.png",
-    "128": "images/T128.png"
+    "16": "images/V16.png",
+    "48": "images/V48.png",
+    "128": "images/V128.png"
   },
   "content_scripts": [
     {
-      "matches": ["https://timeporten2.nemo-q.se/*"],
-      "css": ["tp.css"],
-      "js": ["tp.js"],
+      "matches": ["https://timeporten2.nemo-q.se/*"],  
+      "css": ["ventus.css"],
+      "js": ["ventus.js"],
       "run_at": "document_idle",
       "world": "MAIN"
     }]
