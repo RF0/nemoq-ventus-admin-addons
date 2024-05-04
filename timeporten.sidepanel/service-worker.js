@@ -29,7 +29,7 @@ chrome.tabs.onUpdated.addListener(async (tabId, info, tab) => {
     console.log('enable sidepanel on ' + url.origin);
     await chrome.sidePanel.setOptions({
       tabId,
-      path: 'ventus.html',
+      path: 'main.html',
       enabled: true
     });
   } else {
