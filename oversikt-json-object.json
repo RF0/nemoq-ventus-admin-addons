@@ -1,0 +1,32 @@
+{
+    "1. gang fam": {
+        "name": "1. gang fam",
+        "bookings": 28,
+        "reserved": 38
+    },
+    "Effektuering": {
+        "name": "Effektuering",
+        "bookings": 65,
+        "reserved": 86
+    },
+    "Fornyelser": {
+        "name": "Fornyelser",
+        "bookings": 122,
+        "reserved": 122
+    },
+    "OKO": {
+        "name": "OKO",
+        "bookings": 164,
+        "reserved": 164
+    },
+    "POT": {
+        "name": "POT",
+        "bookings": 65,
+        "reserved": 65
+    },
+    "Student": {
+        "name": "Student",
+        "bookings": 32,
+        "reserved": 32
+    }
+}
