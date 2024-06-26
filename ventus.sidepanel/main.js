@@ -1,19 +1,20 @@
 $(document).ready(function(){
     $( function() {
-        const timeCells = $("div[data='serviceCategoryGroups']");        
+        const timeCells = $("div[data='serviceCategoryGroups']");   
+        
+        //create array of all timeCells     
         timeCellObjects = [];
+        
+        //this object is used to store unique SCGs, where name is the unique key
         uniqueScgs = {};
+
         //iterate each SCG for this timeCell
         timeCells.each(function(index, value) {
             const timeCell = timeCells[index];
-            const timeCellMaxBookings = timeCell.dataset.maxbookings;
             const fromTime = $(timeCell).children("input").eq(4).val();
-            const toTime = $(timeCell).children("input").eq(5).val();
 
             const timeCellObject = {
-                maxBookings: timeCellMaxBookings,
                 fromTime,
-                toTime,
                 scgs: []
             }
             
@@ -22,8 +23,9 @@ $(document).ready(function(){
             scgs.each(function(index, value) {
                 const scg = scgs[index];
                 const scgName = $(scg).children("td").first().text();
-                //grab the second td which is the number of bookings
+                //grab the zero-indexed second td which is the number of bookings
                 const scgBookings = $(scg).children("td").eq(1).text();
+                //grab the zero-indexed third td which is the number of reserved slots
                 const scgReserved = $(scg).children("td").eq(2).find("input").val();
                 timeCellObject.scgs.push({
                     name: scgName,
@@ -45,16 +47,12 @@ $(document).ready(function(){
             });
             timeCellObjects.push(timeCellObject);
         });
-        $("<table class='cell-border compact stripe' id='scgStats'><thead><tr id='scgStatsHeader'><td>Tjenestekategorigruppe</td><td>Bookede tider</td><td>Reserverte tider</td><td>Første tilgjengelig dato</td></tr></thead><tbody id='scgStatsBody'></tbody></table>").insertBefore("form");
-        console.log(uniqueScgs);
+        /**Insert table on top of page, styled using boostrap v2.3.2 which is used by Ventus */
+        $("<table class='table table-striped table-bordered table-condensed' id='scgStats'><thead><tr id='scgStatsHeader'><th scope='col'>Group</th><th scope='col'>Antall bookinger</th><th scope='col'>Reserved</th><th scope='col'>Første ledige</th></tr></thead><tbody id='scgStatsBody'></tbody></table>").insertBefore("form");
         for (const scg in uniqueScgs) {
-            if (fromTime && !uniqueScgs[scg].firstAvailableDate) 
-                uniqueScgs[scg].firstAvailableDate = fromTime;
-            console.log(uniqueScgs[scg]);
-            $("#scgStatsBody").after("<tr><td>"+uniqueScgs[scg].name+"</td><td>"+uniqueScgs[scg].bookings+"</td><td>"+uniqueScgs[scg].reserved+"</td><td>"+uniqueScgs[scg].firstAvailableDate+"</td></tr>");
+            const firstAvailableDate = uniqueScgs[scg].firstAvailableDate ? uniqueScgs[scg].firstAvailableDate : "Ingen";
+            $("#scgStatsBody").append("<tr><th scope='row'>"+uniqueScgs[scg].name+"</td><td>"+uniqueScgs[scg].bookings+"</td><td>"+uniqueScgs[scg].reserved+"</td><td>"+firstAvailableDate+"</td></tr>");
         }
-        
-
     });
     
 });
