@@ -48,8 +48,10 @@ $(document).ready(function(){
         $("<table class='cell-border compact stripe' id='scgStats'><thead><tr id='scgStatsHeader'><td>Tjenestekategorigruppe</td><td>Bookede tider</td><td>Reserverte tider</td><td>Første tilgjengelig dato</td></tr></thead><tbody id='scgStatsBody'></tbody></table>").insertBefore("form");
         console.log(uniqueScgs);
         for (const scg in uniqueScgs) {
+            if (fromTime && !uniqueScgs[scg].firstAvailableDate) 
+                uniqueScgs[scg].firstAvailableDate = fromTime;
             console.log(uniqueScgs[scg]);
-            $("#scgStatsBody").after("<tr><td>"+uniqueScgs[scg].name+"</td><td>"+uniqueScgs[scg].bookings+"</td><td>"+uniqueScgs[scg].reserved+"</td><td>"+uniqueScgs[scg].firstAvailableDate || ''+"</td></tr>");
+            $("#scgStatsBody").after("<tr><td>"+uniqueScgs[scg].name+"</td><td>"+uniqueScgs[scg].bookings+"</td><td>"+uniqueScgs[scg].reserved+"</td><td>"+uniqueScgs[scg].firstAvailableDate+"</td></tr>");
         }
         
 
