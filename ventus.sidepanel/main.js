@@ -28,7 +28,7 @@ $(document).ready(function(){
                 timeCellObject.scgs.push({
                     name: scgName,
                     bookings: Number(scgBookings),
-                    reserved: Number(scgReserved)
+                    reserved: Number(scgReserved),
                 });
                 if (!uniqueScgs.hasOwnProperty(scgName)) {
                     uniqueScgs[scgName] = {
@@ -40,14 +40,16 @@ $(document).ready(function(){
                     uniqueScgs[scgName].bookings += Number(scgBookings);
                     uniqueScgs[scgName].reserved += Number(scgReserved);
                 }
+                if (Number(scgReserved) > Number(scgBookings) && !uniqueScgs[scgName].firstAvailableDate)
+                    uniqueScgs[scgName].firstAvailableDate = fromTime;
             });
             timeCellObjects.push(timeCellObject);
         });
-        $("<table class='cell-border compact stripe' id='scgStats'><thead><tr id='scgStatsHeader'><td>Tjenestekategorigruppe</td><td>Bookede tider</td><td>Reserverte tider</td></tr></thead><tbody id='scgStatsBody'></tbody></table>").insertBefore("form");
+        $("<table class='cell-border compact stripe' id='scgStats'><thead><tr id='scgStatsHeader'><td>Tjenestekategorigruppe</td><td>Bookede tider</td><td>Reserverte tider</td><td>Første tilgjengelig dato</td></tr></thead><tbody id='scgStatsBody'></tbody></table>").insertBefore("form");
         console.log(uniqueScgs);
         for (const scg in uniqueScgs) {
             console.log(uniqueScgs[scg]);
-            $("#scgStatsBody").after("<tr><td>"+uniqueScgs[scg].name+"</td><td>"+uniqueScgs[scg].bookings+"</td><td>"+uniqueScgs[scg].reserved+"</td></tr>");
+            $("#scgStatsBody").after("<tr><td>"+uniqueScgs[scg].name+"</td><td>"+uniqueScgs[scg].bookings+"</td><td>"+uniqueScgs[scg].reserved+"</td><td>"+uniqueScgs[scg].firstAvailableDate || ''+"</td></tr>");
         }
         
 
