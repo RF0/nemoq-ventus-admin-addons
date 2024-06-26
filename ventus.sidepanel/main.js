@@ -43,10 +43,13 @@ $(document).ready(function(){
             });
             timeCellObjects.push(timeCellObject);
         });
+        $("<table class='cell-border compact stripe' id='scgStats'><thead><tr id='scgStatsHeader'><td>Tjenestekategorigruppe</td><td>Bookede tider</td><td>Reserverte tider</td></tr></thead><tbody id='scgStatsBody'></tbody></table>").insertBefore("form");
         console.log(uniqueScgs);
         for (const scg in uniqueScgs) {
             console.log(uniqueScgs[scg]);
+            $("#scgStatsBody").after("<tr><td>"+uniqueScgs[scg].name+"</td><td>"+uniqueScgs[scg].bookings+"</td><td>"+uniqueScgs[scg].reserved+"</td></tr>");
         }
+        
 
     });
     
