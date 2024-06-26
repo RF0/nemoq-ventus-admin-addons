@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $( function() {
+        if ($("div[data='serviceCategoryGroups']").length <= 0) return;
         const timeCells = $("div[data='serviceCategoryGroups']");   
         //this object is used to store unique SCGs, where name is the unique key
         uniqueScgs = {};
